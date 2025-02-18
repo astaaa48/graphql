@@ -121,7 +121,7 @@ export async function ProfilePage() {
       rect.setAttribute("y", y);
       rect.setAttribute("width", barWidth);
       rect.setAttribute("height", barHeight);
-      rect.setAttribute("fill", "purple");
+      rect.setAttribute("fill", "blue");
       rect.setAttribute("cursor", "pointer");
   
       rect.addEventListener("mouseover", () => {
@@ -136,15 +136,19 @@ export async function ProfilePage() {
     const widthUp = USER_DATA.totalUp
     const widthDown = USER_DATA.totalDown
     const totalwidth = widthUp + widthDown;
-  
+    const ratioColor = widthUp > widthDown ? 'green' : 'red';
+    const need = widthUp > widthDown ? 'your good' : `you need ${formatSize(widthDown - widthUp)}`;
+
     const svgString = `
-    <svg width="300" height="150" xmlns="http://www.w3.org/2000/svg">
-      <rect x="10" y="60" width="${(widthUp / (totalwidth)) * 200}" height="30" fill="#00A3C7" />
-      <rect x="${10 + (widthUp / (totalwidth)) * 200}" y="60" width="${(widthDown / (totalwidth)) * 200}" height="30" fill="#a00c20" />
+    <svg width="350" height="150" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="61" width="${(widthUp / (totalwidth)) * 200}" height="9" fill="green" />;
+      <rect x="10" y="81" width="${(widthDown / (totalwidth)) * 200}" height="9" fill="red" />
   
-      <text x="10" y="40" font-size="20" fill="#BDBDBD">Your ratio: <tspan fill="yellow">${USER_DATA.auditRatio}</tspan></text>
-      <text x="10" y="105" font-size="14" fill="#BDBDBD">Up: ${formatSize(USER_DATA.totalUp)}</text>
-      <text x="110" y="105" font-size="14" fill="#BDBDBD">Down: ${formatSize(USER_DATA.totalDown)}</text>
+      <text x="10" y="40" font-size="20" fill="black">Your ratio: <tspan fill="${ratioColor}">${USER_DATA.auditRatio}  </tspan></text>
+      <text x="190" y="140" font-size="15" fill="black"> <tspan fill="${ratioColor}"> ${need} </tspan></text>
+
+      <text x="${25 + (widthUp / (totalwidth)) * 200}" y="70" font-size="14" fill="black">🟩 Up: ${formatSize(USER_DATA.totalUp)}</text>
+      <text x="${20 + (widthDown / (totalwidth)) * 200}" y="90" font-size="14" fill="black">🟥 Down: ${formatSize(USER_DATA.totalDown)}</text>
     </svg>`
     const parser = new DOMParser();
     const svgDoc = parser.parseFromString(svgString, "image/svg+xml");
