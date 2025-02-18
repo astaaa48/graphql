@@ -23,18 +23,19 @@ const config = {
 };
 
 const loginPage = `
-  <div class="login-page-wrapper">
-    <div class="login-container">
-      <h1>Login</h1>
-      <form id="login-form">
-        <input type="text" id="username" placeholder="Username or Email" required />
-        <input type="password" id="password" placeholder="Password" required />
-        <button type="submit">Login</button>
-      </form>
-      <p id="error-message"></p>
-    </div>
+  <div class="login-container">
+    <h1>Login</h1>
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Username or Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p id="error-message"></p>
   </div>
 `;
+
+
+
 
 const profileHTML = (userData) => `
 <header>
@@ -48,45 +49,45 @@ const profileHTML = (userData) => `
         <h1>Welcome, ${userData.firstName} ${userData.lastName}!</h1>
 </header>
 <div class="profile-container">
-  <div class="info-container">
-    <div class="personal-info">
-      <h2>Personal Information</h2>
-      <p><strong>Username: </strong>${userData.username}</p>
-      <p><strong>Email: </strong>${userData.email}</p>
-      <p><strong>Your XP: </strong> ${userData.XP}</p>
-    </div>
-    <div class="projects-success">
-      <h2>Number of projects: ${userData.successrojects}</h2>
-      <h2>Projects Name</strong></h2>
-        ${userData.finished_projects.map(project => {
+  <div class="personal-info">
+    <h2>Personal Information</h2>
+    <p><strong>Username: </strong>${userData.username}</p>
+    <p><strong>Email: </strong>${userData.email}</p>
+    <p><strong>Your XP: </strong> ${userData.XP}</p>
+  </div>
+   <div class="current-projects">
+      <h2>Current Projects</h2>
+      ${userData.current_projects.map(project => {
     const path = (project.group.path).split('/').pop();
     return `<p>${path}</p>`
   }).join('')
-    }
+  }
+  </div>
+  <div class="projects-success">
+    <h2>Number of projects: ${userData.successrojects}</h2>
+    <h2>Projects Names:</strong></h2>
+      ${userData.finished_projects.map(project => {
+  const path = (project.group.path).split('/').pop();
+  return `<p>${path}</p>`
+}).join('')
+  }
+  </div>
+ 
+  <div id="graph1" class="graph1">
+    <div id="title">
+      <h2>you worked with : <p id="NamesAndTimes"></p></h2>
+      
     </div>
-    <div class="current-projects">
-        <h2>Current Projects</h2>
-        ${userData.current_projects.map(project => {
-      const path = (project.group.path).split('/').pop();
-      return `<p>${path}</p>`
-    }).join('')
-    }
+    <div id="svg-graph111">
     </div>
   </div>
-  <div class="graph-container">
-    <div id="graph1">
-      <div id="title">
-        <h2>you worked with :</h2>
-        <p id="NamesAndTimes"></p>
-      </div>
-      <div id="svg-graph111">
-      </div>
-    </div>
-    <div id="graph2">
-    </div>
+  
+  <div id="graph2">
   </div>
 </div>
 `;
+
+
 
 function isLoging() {
   if (localStorage.getItem("jwt")) {
