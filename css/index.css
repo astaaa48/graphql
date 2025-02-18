@@ -4,7 +4,7 @@
   --blackBackgroundDiv: #272529;
   --blackBackground: #1A191C;
   --greyText: #BDBDBD;
-  --greyBackgroundDiv: #E8E1F0;
+  --greyBackgroundDiv: #333036;
   --whiteText: #FFFFFF;
 }
 
@@ -25,9 +25,6 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 header {
@@ -79,39 +76,45 @@ header h1 {
   margin-top: 20px;
 }
 
-/* Center login container vertically and horizontally */
-.login-page-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
 /* Profile container */
 .profile-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   padding: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
   border-radius: 8px;
   margin: 20px auto;
-  max-width: 1200px;
+  max-width: 90%;
+}
+.personal-info{
+  height: fit-content;
+  width: fit-content;
+  grid-column: 1 / span 2;
+
+}
+.projects-success {
+  grid-column: 1;
+  grid-row: 2 / span 3;
 }
 
-.info-container {
-  width: 49%;
-}
+.graph1 {
+  grid-column: 2 ;
+  width: fit-content;
+  background-color: var(--greyBackgroundDiv);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--purpleBackground);
 
-.graph-container {
-  width: 49%;
 }
 
 .personal-info, .projects-success, .current-projects {
-  background-color: var(--blackBackgroundDiv);
+  background-color: var(--greyBackgroundDiv);
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
   border: 1px solid var(--purpleBackground); /* Added border for separation */
+
 }
 
 h2 {
@@ -138,17 +141,17 @@ strong {
 }
 
 .current-projects {
-  background-color: var(--blackBackgroundDiv);
+  background-color: var(--greyBackgroundDiv);
   margin-top: 20px;
 }
 
-/* Graph styling for all screen sizes */
 #graph1, #graph2 {
-  background-color: var(--blackBackgroundDiv);
   margin-top: 20px;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid var(--purpleBackground);
+  background-color: var(--greyBackgroundDiv);
+  height: fit-content;
+  border: 1px solid var(--purpleBackground); /* Added border for separation */
+
+
 }
 
 #title {
@@ -163,101 +166,10 @@ strong {
 #svg-graph111 {
   width: 100%;
   height: 300px;
-  background-color: var(--blackBackgroundDiv);
   margin-top: 20px;
-  overflow-x: auto ;
-}
-/* Scrollbar styling */
-#svg-graph111::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
-}
-
-#svg-graph111::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-#svg-graph111::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-}
-
-#svg-graph111::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-/* For Firefox */
-#svg-graph111 {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
-}
-/* Login Page Container */
-.login-container {
-  background-color: var(--blackBackgroundDiv);
-  padding: 40px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: var(--purpleBackground);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-input {
-  padding: 12px;
-  font-size: 16px;
-  background-color: var(--blackBackground);
-  color: var(--whiteText);
-  border: 1px solid var(--greyText);
-  border-radius: 5px;
-  outline: none;
-}
-
-input:focus {
-  border-color: var(--purpleBackground);
-  box-shadow: 0 0 5px var(--purpleBackground);
-}
-
-button {
-  padding: 12px;
-  background-color: var(--purpleBackground);
-  color: var(--whiteText);
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: var(--purpleText);
-}
-
-#error-message {
-  margin-top: 15px;
-  color: red;
-  font-size: 14px;
 }
 
 /* Responsive Design */
-@media (max-width: 992px) {
-  .info-container, .graph-container {
-    width: 100%;
-  }
-}
-
 @media (max-width: 768px) {
   .Page-Top {
     flex-direction: column;
@@ -278,7 +190,6 @@ button:hover {
 
   .profile-container {
     padding: 15px;
-    flex-direction: column;
   }
 
   .personal-info, .projects-success, .current-projects {
@@ -293,23 +204,7 @@ button:hover {
     font-size: 14px;
   }
 
-
-  .login-container {
-    width: 90%;
-    padding: 30px;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  input {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  button {
-    font-size: 16px;
-    padding: 10px;
+  #graph1, #graph2 {
+    margin-top: 15px;
   }
 }
