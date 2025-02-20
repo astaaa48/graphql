@@ -75,6 +75,9 @@ export async function ProfilePage() {
   
     } catch (error) {
       console.error("Failed to render profile page:", error);
+      document.body.innerHTML = loginPage;
+      login()
+      return
     }
   }
 
@@ -155,4 +158,3 @@ export async function ProfilePage() {
     const svgElement = svgDoc.documentElement;
     graph2.appendChild(svgElement);
   }
-  
