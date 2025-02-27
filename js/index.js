@@ -100,6 +100,10 @@ function isLoging() {
 
 isLoging()
 
+
+
+
+// xp format 
 function formatSize(sizeInBytes, xp) {
   var result;
   if (sizeInBytes < 1000) {

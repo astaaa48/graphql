@@ -24,7 +24,7 @@ export async function ProfilePage() {
       });
   
       const result = await response.json();
-  
+     
       if (result.errors) {
         throw new Error("Failed to fetch user data");
       }
@@ -68,11 +68,11 @@ export async function ProfilePage() {
       const graph2 = document.getElementById("graph2");
       createAuditRatio(config.USER_DATA, graph2);
       document.getElementById("logout").addEventListener("click", () => {
-        localStorage.removeItem("jwt");
+        localStorage.removeItem("jwt"); 
+        members = []; 
         document.body.innerHTML = loginPage;
-        login();
+        login(); 
       });
-  
     } catch (error) {
       console.error("Failed to render profile page:", error);
       document.body.innerHTML = loginPage;
