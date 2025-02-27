@@ -1,1 +1,1 @@
-link : https://astaaa48.github.io/graphql/[text](../../graphql/README.md)
+link : https://astaaa48.github.io/graphql/
